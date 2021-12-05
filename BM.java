@@ -5,6 +5,16 @@
  */
 package Algoritmos;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Renan
@@ -14,16 +24,22 @@ public class BM {
 
 
 
-   public static void main(String[] abc) {
+   public static void main(String[] abc){
        
-       
+   String content="";
+       try {
+           content = new String(Files.readAllBytes(Paths.get("Ingresar ruta local archivo .txt a leer")));
+      } catch (IOException ex) {
+           Logger.getLogger(BM.class.getName()).log(Level.SEVERE, null, ex);
+       } 
+        
+        
        System.out.println("Testing BM");
        long TInicio, TFin, tiempo; 
         TInicio = System.currentTimeMillis();
 
 
-       test("Insertar texto", "Insertar texto a buscar", 0);
-
+       test(content,"Ingresar texto a buscar dentro del archivo .txt",0);
        TFin = System.currentTimeMillis(); 
        tiempo = TFin - TInicio; 
        System.out.println("Tiempo de ejecución en milisegundos: " + tiempo); 
@@ -63,7 +79,7 @@ public class BM {
            System.out.println("FAILED");
 
 
-           System.out.println("\ttext: " + text);
+           /*System.out.println("\ttext: " + text); Causa retraso en la busqueda*/
 
 
            System.out.println("\tword: " + word);
@@ -271,5 +287,7 @@ public class BM {
 
 
 }
+
+
 
 
