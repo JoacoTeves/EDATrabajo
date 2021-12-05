@@ -16,7 +16,19 @@
 
 
 package Algoritmos;
+
+
+
+
+
+
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -27,7 +39,7 @@ import java.util.ArrayList;
 /**
 
 
-* @author jteve
+* @author William Torres
 
 
 */
@@ -254,13 +266,20 @@ public class Kmp {
 
    }
     public static void main(String[] args) {
+        String content="";
+       try {
+           content = new String(Files.readAllBytes(Paths.get("Ingresar ruta local archivo .txt a leer")));
+      } catch (IOException ex) {
+           Logger.getLogger(BM.class.getName()).log(Level.SEVERE, null, ex);
+       } 
+       
         long TInicio, TFin, tiempo; 
         TInicio = System.currentTimeMillis();
 
-        System.out.println(kmp("Insertar texto","Insertar texto a buscar",0));
-        TFin = System.currentTimeMillis(); 
+        System.out.println(kmp(content,"Ingresar texto a buscar dentro del archivo .txt",0));
+                TFin = System.currentTimeMillis(); 
         tiempo = TFin - TInicio; 
-        System.out.println("Tiempo de ejecución en milisegundos: " + tiempo); 
+        System.out.println("Tiempo des ejecución en milisegundos: " + tiempo); 
 
     }
 //Primera posicion donde encuentra el patron a buscar. Con pos 0.
