@@ -5,6 +5,15 @@
  */
 package Algoritmos;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Renan
@@ -216,20 +225,27 @@ public class kR
 
 
    {
+     String content="";
+       try {
+           content = new String(Files.readAllBytes(Paths.get("Ingresar ruta local archivo .txt a leer")));
+      } catch (IOException ex) {
+           Logger.getLogger(BM.class.getName()).log(Level.SEVERE, null, ex);
+       } 
+       
        long TInicio, TFin, tiempo; 
        TInicio = System.currentTimeMillis();
 
 
-       String txt = "Insertar texto";
+       String txt = content ;
 
 
-       String pat = "Insertar texto a buscar";
+       String pat = "Ingresar texto a buscar dentro del archivo .txt";
 
 
        search(pat, txt);
        TFin = System.currentTimeMillis(); 
        tiempo = TFin - TInicio; 
-       System.out.println("Tiempo de ejecución en milisegundos: " + tiempo); 
+       System.out.println("Tiempo des ejecución en milisegundos: " + tiempo); 
 
    }
 //Busca el inicio de los patrones.
